@@ -1,4 +1,4 @@
-# node-http-server
+# Node.js Server
 
 This project is meant to showcase the evolution of a web server built using Node.js as I study this technology in depth.
 
