@@ -1,17 +1,10 @@
 const express = require("express");
+
+const friendsController = require("./controllers/friends.controller");
+const messagesController = require("./controllers/messages.controller");
+
 const app = express();
 const PORT = 3000;
-
-const friends = [
-  {
-    id: 0,
-    name: "Albert Einstein",
-  },
-  {
-    id: 1,
-    name: "Sir Isaac Newton",
-  },
-];
 
 // Middleware function to log the request made, the endpoint and the milliseconds
 app.use((req, res, next) => {
@@ -25,47 +18,16 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // POST method handler function to check the request and create a new friend
-app.post("/friends", (req, res) => {
-  if (!req.body.name) {
-    return res.status(400).json({
-      error: "Missing friend name...",
-    });
-  }
-  const newFriend = {
-    name: req.body.name,
-    id: friends.length,
-  };
-  friends.push(newFriend);
-
-  res.json(newFriend);
-});
-
+app.post("/friends", friendsController.postFriend);
 // GET handler function to the entire friends endpoint
-app.get("/friends", (req, res) => {
-  res.json(friends);
-});
-
+app.get("/friends", friendsController.getFriends);
 // GET handler function to retrieve the information of a single friend
-app.get("/friends/:friendId", (req, res) => {
-  const friendId = Number(req.params.friendId);
-  const friend = friends[friendId];
+app.get("/friends/:friendId", friendsController.getFriend);
 
-  if (friend) {
-    res.status(200).json(friend);
-  } else {
-    res.status(404).json({
-      error: "The friend id is not valid.",
-    });
-  }
-});
-
-app.get("/messages", (req, res) => {
-  res.send("<ul><li>Hello Albert Einstein!</li></ul>");
-});
-
-app.post("/messages", (req, res) => {
-  console.log("Updating Messages...");
-});
+// GET handler function to retrieve the messages endpoint information
+app.get("/messages", messagesController.getMessages);
+// POST handler function to include a new message
+app.post("/messages", messagesController.postMessage);
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
