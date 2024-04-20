@@ -9,6 +9,7 @@ This project is meant to showcase the evolution of a web server built using Node
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__ `messages.controller.js`: A controller module for the server's `messages` endpoint.<br>
 |__ `models`: This directory contains the server's models.<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__ `friends.model.js`: A models file for the current friends data in the server.<br>
+|__ `public`: This directory contains the server's public files.<br>
 |__ `routes`: This directory contains the server's router files.<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__ `friends.router.js`: A router file mounted on the server.js file to handle different methods.<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__ `messages.router.js`: A router file mounted on the server.js file to handle different methods.<br>
